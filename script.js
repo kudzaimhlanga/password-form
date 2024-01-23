@@ -14,9 +14,9 @@
 	const numberMark = document.querySelector("[data-pass='number']");
 	const specialMark = document.querySelector("[data-pass='special']");
 
-    //progress UI
-    const progressFill = document.querySelector(".progress-fill");
-    const progressTrack = document.querySelector(".pass-stren-track");
+	//progress UI
+	const progressFill = document.querySelector('.progress-fill');
+	const progressTrack = document.querySelector('.pass-stren-track');
 
 	//toggle password visibility
 	function togglePassword() {
@@ -28,7 +28,7 @@
 	}
 
 	//validate input
-    //TODO : PREVENT SPACES
+	//TODO : PREVENT SPACES
 	function validateInput(e) {
 		const password = input.value.toString();
 		let valid = true;
@@ -114,29 +114,25 @@
 
 	//update the UI has the password is being entered
 	function checkUI(errors) {
-
-        //check strength
+		//check strength
 		const progress = 100 - Math.round((errors.length / 5) * 100);
-        progressFill.style.width = `${ progress}%`;
-        
-        console.log(progress)
+		progressFill.style.width = `${progress}%`;
 
+		if (progress < 40) {
+			progressTrack.style.transform = 'TranslateY(0%)';
+		}
 
-        if(progress < 40){
-            progressTrack.style.transform = "TranslateY(0%)";
-        }
+		if (progress === 40) {
+			progressTrack.style.transform = 'TranslateY(-25%)';
+		}
 
-        if(progress === 40){
-            progressTrack.style.transform = "TranslateY(-25%)";
-        }
+		if (progress === 80 || progress === 60) {
+			progressTrack.style.transform = 'TranslateY(-50%)';
+		}
 
-        if(progress === 80 || progress === 60){
-            progressTrack.style.transform = "TranslateY(-50%)";
-        }
-
-        if(progress > 99){
-            progressTrack.style.transform = "TranslateY(-75%)";
-        }
+		if (progress > 99) {
+			progressTrack.style.transform = 'TranslateY(-75%)';
+		}
 
 		//check length
 		if (errors.indexOf('length') >= 0) {
